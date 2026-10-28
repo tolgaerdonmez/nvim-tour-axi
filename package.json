@@ -1,0 +1,54 @@
+{
+  "name": "nvim-tour-axi",
+  "version": "0.1.0",
+  "description": "Agent-driven guided code tours in Neovim: one AXI CLI to open, load, add, check, go and unload tour steps",
+  "type": "module",
+  "bin": {
+    "nvim-tour-axi": "dist/bin/nvim-tour-axi.js"
+  },
+  "files": [
+    "dist",
+    "plugin",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "axi-sdk-js": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "prettier": "^3.9.10",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "axi",
+    "agent",
+    "neovim",
+    "nvim",
+    "code-tour",
+    "cli",
+    "skill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolgaerdonmez/nvim-tour-axi.git"
+  },
+  "homepage": "https://github.com/tolgaerdonmez/nvim-tour-axi#readme",
+  "bugs": {
+    "url": "https://github.com/tolgaerdonmez/nvim-tour-axi/issues"
+  },
+  "author": "Tolga Erdönmez",
+  "license": "MIT"
+}

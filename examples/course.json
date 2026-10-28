@@ -20,11 +20,11 @@
       "section": "1 · The driver",
       "title": "nvim-tour-axi load: config over the socket",
       "file": "src/cli.ts",
-      "range": [285, 315],
+      "range": [289, 319],
       "anchor": "async function load(args: string[]): Promise<Output> {",
       "marks": [
-        { "line": 296, "text": "put the plugin on runtimepath" },
-        { "line": 298, "text": "replace any earlier instance, then start" }
+        { "line": 300, "text": "put the plugin on runtimepath" },
+        { "line": 302, "text": "replace any earlier instance, then start" }
       ],
       "body": [
         "Loading is two Lua evaluations in your Neovim, nothing more:",

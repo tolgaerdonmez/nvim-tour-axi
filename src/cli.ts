@@ -186,6 +186,10 @@ async function home(): Promise<Output> {
   return out;
 }
 
+function shellQuote(s: string): string {
+  return `'${s.replace(/'/g, "'\\''")}'`;
+}
+
 function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
@@ -248,7 +252,7 @@ async function open(args: string[]): Promise<Output> {
         process.env.TMUX_PANE!,
         "-c",
         root,
-        `nvim --listen '${sock}'`,
+        `nvim --listen ${shellQuote(sock)}`,
       ],
       { encoding: "utf-8" },
     );
@@ -256,7 +260,7 @@ async function open(args: string[]): Promise<Output> {
     return {
       neovim: "not opened",
       reason: "no Rex or tmux here",
-      run: `cd '${root}' && nvim --listen '${sock}'`,
+      run: `cd ${shellQuote(root)} && nvim --listen ${shellQuote(sock)}`,
       help: [
         "Ask the user to run the `run` command in another terminal, then `nvim-tour-axi load <course> <root>`",
       ],

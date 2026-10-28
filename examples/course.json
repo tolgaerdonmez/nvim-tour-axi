@@ -1,0 +1,78 @@
+{
+  "title": "nvim-tour-axi, toured by itself",
+  "steps": [
+    {
+      "id": "intro",
+      "section": "0 · How a tour works",
+      "title": "What you are looking at",
+      "body": [
+        "This panel shows one **step** of a course an agent wrote for you.",
+        "",
+        "- `n` / `p`: next / previous step",
+        "- `l`: list every step",
+        "- `a`: ask the agent; your step and `file:line` are attached",
+        "",
+        "Press `n`: the next step opens a file and highlights the lines it explains."
+      ]
+    },
+    {
+      "id": "driver-load",
+      "section": "1 · The driver",
+      "title": "nvim-tour-axi load: config over the socket",
+      "file": "src/cli.ts",
+      "range": [289, 319],
+      "anchor": "async function load(args: string[]): Promise<Output> {",
+      "marks": [
+        { "line": 300, "text": "put the plugin on runtimepath" },
+        { "line": 302, "text": "replace any earlier instance, then start" }
+      ],
+      "body": [
+        "Loading is two Lua evaluations in your Neovim, nothing more:",
+        "",
+        "1. append the package's `plugin/` directory to `runtimepath`;",
+        "2. drop any loaded copy of the module and call `setup` with the course, the project root, the language and the transport.",
+        "",
+        "Nothing is written to your config, so closing Neovim forgets the tour."
+      ]
+    },
+    {
+      "id": "transport",
+      "section": "1 · The driver",
+      "title": "Where your questions go",
+      "file": "src/nvim.ts",
+      "range": [88, 118],
+      "anchor": "export function resolveTransport(course: string): Transport {",
+      "body": [
+        "`auto` picks the agent's own terminal: its Rex block, else its tmux pane, else an inbox file next to the course.",
+        "",
+        "The multiplexer binary is passed as an absolute path because a Neovim started by the multiplexer may not inherit the agent's `PATH`."
+      ]
+    },
+    {
+      "id": "anchor",
+      "section": "2 · The plugin",
+      "title": "Anchors survive edits",
+      "file": "plugin/lua/nvim_tour/init.lua",
+      "range": [258, 279],
+      "anchor": "local function anchor_offset(buf, first, anchor)",
+      "body": [
+        "A step may name an `anchor`: text expected on its first line.",
+        "",
+        "If the file changed and the anchor moved, the plugin searches up to 200 lines around it and shifts the highlight, the label and every note by the same offset, marking the step `[moved]`."
+      ]
+    },
+    {
+      "id": "watch",
+      "section": "2 · The plugin",
+      "title": "Live reload",
+      "file": "plugin/lua/nvim_tour/init.lua",
+      "range": [542, 564],
+      "anchor": "local function watch()",
+      "body": [
+        "The agent appends chapters while you read. A file watcher reloads the course, keeps you on the same step by its `id`, and re-arms itself because an atomic write replaces the file it was watching.",
+        "",
+        "This is the last step. Press `a` and ask the agent anything."
+      ]
+    }
+  ]
+}
